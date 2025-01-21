@@ -25,9 +25,11 @@ def main(context):
 
     # The req object contains the request data
     if context.req.path == "/ping":
-        # Use res object to respond with text(), json(), or binary()
-        # Don't forget to return a response!
-        return context.res.text("Pong")
+        # Use res object to respond with an HTML file
+        # Read the HTML file content and send it as a response
+        with open("index.html", "r") as html_file:
+            html_content = html_file.read()
+        return context.res.html(html_content)
 
     return context.res.json(
         {
